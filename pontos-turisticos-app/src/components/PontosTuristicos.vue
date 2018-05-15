@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid>
-  <v-layout row>
+  <v-container fluid grid-list-md>
+  <v-layout row wrap>
     <lista-atracoes></lista-atracoes>
     <formulario-atracoes></formulario-atracoes>
   </v-layout>

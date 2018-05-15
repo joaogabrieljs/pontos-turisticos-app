@@ -6,8 +6,23 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import store from './store/store.js'
+import * as VueGoogleMaps from "vue2-google-maps";
+import StarRating from 'vue-star-rating'
+import VeeValidate from 'vee-validate';
+
 
 Vue.use(Vuetify)
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyBNMpr9i6jn1duoOZVYpjddr8xyUUDbB6Y",
+    libraries: "places" // necessary for places input
+  }
+});
+
+Vue.use(VeeValidate);
+Vue.component('star-rating', StarRating);
+
 
 Vue.config.productionTip = false
 
@@ -16,6 +31,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: { App, StarRating },
   template: '<App/>'
 })
