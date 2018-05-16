@@ -98,6 +98,23 @@
                     ></v-select>
                 </v-flex>
                 <v-flex xs12 sm12>
+                    <v-text-field 
+                    textarea
+                    label="Deixe seu comentário"
+                    required
+                    v-model="comentario">
+                    </v-text-field>
+                </v-flex>
+                <v-flex xs12 sm12>
+                    <star-rating 
+                    v-model="nota"
+                    class="custom-text"
+                    v-bind:star-size="25"
+                    v-bind:increment="0.1"
+                    >
+                    </star-rating>
+                </v-flex>
+                <v-flex xs12 sm12>
                     <file-input
                         accept="image/*"
                         ref="fileInput"
@@ -158,6 +175,8 @@
             horarioInicio: null,
             horarioFim: null,
             foto: null,
+            comentario: null,
+            nota: null,
             ages: Array.from({length: 100}, (v, k) => k+1),
             requiredRule: [
                 v => !!v || 'Campo é obrigatório'
@@ -168,17 +187,20 @@
                 this.foto = e
             },
             addAtracao() {
-                 //console.log(atracao.values())
-                 //console.log(this.hasNull(atracao))
-                 if (this.$store.getters.getLocalizacao.address_components == null) {
+                 if (this.$store.getters.getLocalizacao.address_components == null || !this.foto) {
                      this.alert = true
                  }
                  else {
                     let atracao = this.getAtracao()
                     let enderecoAtracao = this.getEnderecoAtracao()
+                    let comentario = {usuario: 1, comentario: this.comentario, aprovado: true}
+                    let avaliacao = {user: 1, nota: this.nota}
                     this.$store.dispatch('addAtracao', atracao)
                     this.$store.dispatch('addEndereco', enderecoAtracao)
+                    this.$store.dispatch('addComentario', comentario)
+                    this.$store.dispatch('addAvaliacao', avaliacao)
                     this.dialog = false
+                    this.limpaFormulario()
                  }
             },
             getAtracao() { 
@@ -188,14 +210,6 @@
                 atracao.set('horario_func', this.horarioInicio + ' às ' + this.horarioFim)
                 atracao.set('idade_minima', this.idadeMinima)
                 atracao.set('foto', this.foto)
-                
-                /*let atracao = {
-                    'nome': this.nome,
-                    'descricao': this.descricao,
-                    'horario_func': this.horarioInicio + ' às ' + this.horarioFim,
-                    'idade_minima': this.idadeMinima,
-                     'foto': this.foto
-                }*/
                 return atracao
             },
             getEnderecoAtracao() {
@@ -213,6 +227,16 @@
                         component.types.includes("country")).long_name
                 }
                 return enderecoAtracao
+            },
+            limpaFormulario() {
+                this.nome = null
+                this.descricao = null
+                this.horarioInicio = null
+                this.horarioFim = null
+                this.comentario = null
+                this.foto = null
+                this.idadeMinima = null
+                this.nota = 0
             }
        }
     }

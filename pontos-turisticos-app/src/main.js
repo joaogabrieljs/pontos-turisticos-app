@@ -10,8 +10,12 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import StarRating from 'vue-star-rating'
 import VeeValidate from 'vee-validate';
 
-
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#1c3d90",
+    secondary: "#ffeb3b"
+  }
+})
 
 Vue.use(VueGoogleMaps, {
   load: {
