@@ -11,6 +11,9 @@
     <v-content>
       <router-view/>
     </v-content>
+    <v-footer>
+      &copy;2018 — <strong>João Gabriel Junqueira</strong>
+    </v-footer>
   </v-app>
 </template>
 

@@ -16,13 +16,13 @@
           <v-card-actions>
             <v-tooltip bottom>
               <v-btn slot="activator" icon @click="showUpdateDialog(atracao)">
-              <v-icon>edit</v-icon>
+              <v-icon color="primary">edit</v-icon>
               </v-btn>
               <span>Editar atração</span>
             </v-tooltip>
             <v-tooltip bottom>
               <v-btn slot="activator" icon @click="showDeleteDialog(atracao)">
-                <v-icon>delete</v-icon>
+                <v-icon color="primary">delete</v-icon>
               </v-btn>
               <span>Excluir atração</span>
             </v-tooltip>
