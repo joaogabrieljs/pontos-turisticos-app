@@ -9,10 +9,12 @@
 
 ## Bonus
 :mag: Integração com API do Google Maps
+
 :rocket: Deploy to heroku
 
 ## Possíveis implementações futuras
 :memo: Filtrar atrações pelo nome
+
 :camera: Atualizar imagens
 
 :warning: Link das imagens na API não funcionaram até a entrega desta versão, por isso foi colocada uma imagem padrão em todos os cards.
