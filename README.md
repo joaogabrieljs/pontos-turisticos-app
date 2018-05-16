@@ -1,6 +1,7 @@
 # pontos-turisticos-app
 
 > Desafio Fixar Marketing
+
 Criar um projeto com VueJS, utilizando as seguintes tecnologias:
 
 - VueCLI, Vuex, VueRouter e Vuetify :white_check_mark:
