@@ -4,6 +4,7 @@
 > Criar um projeto com VueJS, utilizando as seguintes tecnologias:
 
 - VueCLI, Vuex, VueRouter e Vuetify :white_check_mark:
+
 - Consumir a API que está documentada na seguinte URL: https://pontosturisticosmarcio.herokuapp.com :white_check_mark:
 
 ## Bonus
