@@ -17,6 +17,8 @@
 
 :camera: Atualizar imagens
 
+:computer: Link da aplicação: https://pontos-turisticos-app.herokuapp.com
+
 :warning: Link das imagens na API não funcionaram até a entrega desta versão, por isso foi colocada uma imagem padrão em todos os cards.
 
 ## Build Setup
