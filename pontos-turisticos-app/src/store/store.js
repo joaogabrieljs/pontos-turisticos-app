@@ -29,6 +29,13 @@ const store = new Vuex.Store({
             console.log(err.response)
         })
     },
+    updateAtracao: function({commit}, atracao) {
+        axios.put(baseUrl + 'atracoes/' + atracao.id + '/', atracao).then((response) => {
+            commit('UPDATE_ATRACAO', { atracao : response.data })
+        }, (err) => {
+            console.log(err.response)
+        })
+    },
     deleteAtracao: function({commit}, atracao) {
         axios.delete(baseUrl + 'atracoes/' + atracao.id + '/').then((response) => {
             commit('DELETE_ATRACAO', { atracao : response.data })
@@ -116,6 +123,10 @@ const store = new Vuex.Store({
     },
     ADD_NEW_ATRACAO: (state, { atracao }) => {
         state.atracoes.push(atracao)
+    },
+    UPDATE_ATRACAO: (state, { atracao }) => {
+        let index = state.atracoes.map(atracao => atracao.id).indexOf(atracao.id)
+        state.atracoes.splice(index, 1, atracao)
     },
     DELETE_ATRACAO: (state, { atracao }) => {
         let index = state.atracoes.indexOf(atracao)

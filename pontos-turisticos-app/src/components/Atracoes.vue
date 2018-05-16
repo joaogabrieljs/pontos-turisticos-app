@@ -1,5 +1,7 @@
 <template>
     <v-flex xs12 sm6 offset-sm3>
+      <v-spacer class="hidden-xs-only"></v-spacer>
+        <v-spacer></v-spacer>
       <v-card v-for="atracao in atracoes" :key="atracao.id">
         <v-card-media
           src='https://vuetifyjs.com/static/doc-images/cards/sunshine.jpg'
@@ -13,8 +15,8 @@
           <v-spacer></v-spacer>
           <v-card-actions>
             <v-tooltip bottom>
-              <v-btn slot="activator" icon>
-                <v-icon>edit</v-icon>
+              <v-btn slot="activator" icon @click="showUpdateDialog(atracao)">
+              <v-icon>edit</v-icon>
               </v-btn>
               <span>Editar atração</span>
             </v-tooltip>
@@ -71,6 +73,24 @@
             </v-card-actions>
           </v-card>
       </v-dialog>
+      <v-dialog v-model="updateDialog" max-width="580">
+          <v-card>
+            <v-card-title class="headline">Atualizar atração</v-card-title>
+            <v-card-text>
+              <v-flex xs12 sm12>
+                  <v-text-field id="nome" v-model="atracao.nome" label="Nome" required></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                  <v-text-field id="descricao" v-model="atracao.descricao" label="Descrição" required multi-line ></v-text-field>
+              </v-flex>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="light-blue darken-4" flat="flat" @click.native="updateDialog = false">Cancelar</v-btn>
+              <v-btn color="light-blue darken-4" flat="flat" @click.native="updateAtracao()">Atualizar</v-btn>
+            </v-card-actions>
+          </v-card>
+      </v-dialog>
     </v-flex>
 </template>
 
@@ -98,18 +118,24 @@
           nota: null,
           endereco: null,
           deleteDialog: false,
+          updateDialog: false,
           atracao: {
             id: null,
             nome: null,
             descricao: null,
             horario_func: null,
             idade_minima: null
-          }
+          },
+          searchText: ''
       }),
       methods: {
         showDeleteDialog(atracao) {
           this.atracao = atracao
           this.deleteDialog = true
+        },
+        showUpdateDialog(atracao) {
+          this.atracao = atracao
+          this.updateDialog = true
         },
         deleteAtracao() {
           this.$store.dispatch('deleteAtracao', this.atracao)
@@ -117,6 +143,10 @@
           this.$store.dispatch('deleteComentario', this.atracao.id)
           this.$store.dispatch('deleteAvaliacao', this.atracao.id)
           this.deleteDialog = false
+        },
+        updateAtracao() {
+          this.$store.dispatch('updateAtracao', this.atracao)
+          this.updateDialog = false
         }
       }
     }

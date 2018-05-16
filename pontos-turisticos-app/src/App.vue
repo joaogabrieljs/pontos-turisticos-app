@@ -2,6 +2,11 @@
   <v-app>
     <v-toolbar color="secondary">
       <v-toolbar-title class="toolbar-title" v-text="title"></v-toolbar-title>
+      <v-spacer class="hidden-xs-only"></v-spacer>
+      <v-text-field
+         prepend-icon="search"
+         placeholder="Buscar atração...">
+      </v-text-field>
     </v-toolbar>
     <v-content>
       <router-view/>
